@@ -1,0 +1,41 @@
+{
+  "name": "n8n-nodes-verifyruns",
+  "version": "0.1.0",
+  "description": "n8n community node for VerifyRuns \u2014 tell VerifyRuns your workflow finished, what it wrote, and fail the execution when the destination disagrees.",
+  "license": "MIT",
+  "author": "Farjad Hasan <farjad.developer@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/farjad-hasan/verifyruns-n8n.git"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "verifyruns",
+    "monitoring",
+    "automation"
+  ],
+  "main": "index.js",
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "scripts": {
+    "build": "tsc && cp nodes/VerifyRuns/verifyruns.svg dist/nodes/VerifyRuns/",
+    "test": "npm run build && node --test \"test/**/*.test.mjs\"",
+    "lint": "tsc --noEmit"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "dist/nodes/VerifyRuns/VerifyRuns.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "n8n-workflow": "^1.60.0",
+    "typescript": "^5.5.0"
+  }
+}
