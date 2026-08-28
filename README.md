@@ -22,12 +22,12 @@ The node runs once per execution and outputs one item: the VerifyRuns response (
 
 ## Install
 
-n8n → Settings → Community Nodes → Install → `n8n-nodes-verifyruns` (once published to npm). For a self-hosted n8n before that: clone, `npm install && npm run build`, and link `dist/` into n8n's custom nodes folder.
+n8n → Settings → Community Nodes → Install → `n8n-nodes-verifyruns` (once published to npm). For a self-hosted n8n before that: clone, `npm install && npm pack`, then in n8n's user folder `cd ~/.n8n/nodes && npm install /path/to/n8n-nodes-verifyruns-0.1.0.tgz` and restart n8n (this is the path that was validated).
 
 ## Status — read this
 
 - Compiles (`npm run build`) and the request/verdict logic is unit-tested (`npm test`, Node's built-in runner).
-- **Not yet validated inside a running n8n instance.** Parameter wiring and `httpRequest` behaviour follow the n8n node API docs; the first live run may surface differences. Please report them.
+- **Validated in n8n 2.35.7 (2026-08-28)** against the live VerifyRuns API: installed from `npm pack` output into `~/.n8n/nodes`, run via `n8n execute`. Default settings turned the execution red with `VerifyRuns: Run reported success, but your workflow said it wrote 1 records; the destination gained 0.`; with *Report What Was Written* off the same Check passed. Not yet tried through the editor UI.
 - Zero runtime dependencies, MIT — written to meet n8n's community-node verification rules; not yet submitted.
 
 ## Develop
