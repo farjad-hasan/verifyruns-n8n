@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildRequest, failureMessage } from '../dist/nodes/VerifyRuns/request.js';
+import { buildRequest, failureMessage, noItemsMessage } from '../dist/nodes/VerifyRuns/request.js';
 
 const URL = 'https://verifyruns.example.com/api/hook/abc123';
 
@@ -41,4 +41,12 @@ test('failureMessage: PASS, null verdict (timed out) and missing verdict never t
 	assert.equal(failureMessage({ accepted: true, run_id: 'r', verdict: 'PASS' }, true), null);
 	assert.equal(failureMessage({ accepted: true, run_id: 'r', verdict: null, timed_out: true }, true), null);
 	assert.equal(failureMessage({ accepted: true, run_id: 'r' }, true), null);
+});
+
+test('noItemsMessage: an unconnected node gets a sentence, not a misleading URL error', () => {
+  // n8n resolves parameters against item 0; with zero input items every parameter reads as its
+  // default, so the URL check fired with a wrong message (seen in the editor, 2026-08-29).
+  assert.equal(noItemsMessage(1), null);
+  assert.match(noItemsMessage(0), /no input items/i);
+  assert.match(noItemsMessage(0), /connect/i);
 });

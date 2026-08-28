@@ -51,3 +51,9 @@ export function failureMessage(res: VerdictResponse, failOnFail: boolean): strin
 	}
 	return null;
 }
+
+/** n8n resolves parameters per item; with zero input items they all read as defaults. Say so plainly. */
+export function noItemsMessage(itemCount: number): string | null {
+	if (itemCount > 0) return null;
+	return 'VerifyRuns received no input items — connect it after the step that writes, so it can report what that step wrote.';
+}

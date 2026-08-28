@@ -27,7 +27,7 @@ n8n → Settings → Community Nodes → Install → `n8n-nodes-verifyruns` (onc
 ## Status — read this
 
 - Compiles (`npm run build`) and the request/verdict logic is unit-tested (`npm test`, Node's built-in runner).
-- **Validated in n8n 2.35.7 (2026-08-28)** against the live VerifyRuns API: installed from `npm pack` output into `~/.n8n/nodes`, run via `n8n execute`. Default settings turned the execution red with `VerifyRuns: Run reported success, but your workflow said it wrote 1 records; the destination gained 0.`; with *Report What Was Written* off the same Check passed. Not yet tried through the editor UI.
+- **Validated in n8n 2.35.7 (2026-08-28)** against the live VerifyRuns API: installed from `npm pack` output into `~/.n8n/nodes`, run via `n8n execute`. Default settings turned the execution red with `VerifyRuns: Run reported success, but your workflow said it wrote 1 records; the destination gained 0.`; with *Report What Was Written* off the same Check passed. Also validated through the editor UI on 2026-08-29: node picker, parameter panel, a red execution with the FAIL sentence and a green one with *Report What Was Written* off.
 - Zero runtime dependencies, MIT — written to meet n8n's community-node verification rules; not yet submitted.
 
 ## Develop

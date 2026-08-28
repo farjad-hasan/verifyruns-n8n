@@ -1,6 +1,6 @@
 import type { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
-import { buildRequest, failureMessage, type VerdictResponse } from './request';
+import { buildRequest, failureMessage, noItemsMessage, type VerdictResponse } from './request';
 
 export class VerifyRuns implements INodeType {
 	description: INodeTypeDescription = {
@@ -62,6 +62,8 @@ export class VerifyRuns implements INodeType {
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
+		const noItems = noItemsMessage(items.length);
+		if (noItems) throw new NodeOperationError(this.getNode(), noItems);
 		const webhookUrl = this.getNodeParameter('webhookUrl', 0) as string;
 		const reportWrote = this.getNodeParameter('reportWrote', 0) as boolean;
 		const wroteParam = reportWrote ? (this.getNodeParameter('wrote', 0) as number) : null;
