@@ -1,9 +1,12 @@
 {
   "name": "n8n-nodes-verifyruns",
   "version": "0.1.0",
-  "description": "n8n community node for VerifyRuns \u2014 tell VerifyRuns your workflow finished, what it wrote, and fail the execution when the destination disagrees.",
+  "description": "n8n community node for VerifyRuns \u00e2\u20ac\u201d tell VerifyRuns your workflow finished, what it wrote, and fail the execution when the destination disagrees.",
   "license": "MIT",
-  "author": "Farjad Hasan <farjad.developer@gmail.com>",
+  "author": {
+    "name": "Farjad Hasan",
+    "email": "farjad.developer@gmail.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/farjad-hasan/verifyruns-n8n.git"
@@ -22,7 +25,7 @@
   "scripts": {
     "build": "tsc && cp nodes/VerifyRuns/verifyruns.svg dist/nodes/VerifyRuns/",
     "test": "npm run build && node --test \"test/**/*.test.mjs\"",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit && eslint nodes package.json"
   },
   "n8n": {
     "n8nNodesApiVersion": 1,
@@ -35,7 +38,17 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
+    "@typescript-eslint/parser": "^8.68.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-n8n-nodes-base": "^2.0.0",
     "n8n-workflow": "^1.60.0",
     "typescript": "^5.5.0"
+  },
+  "homepage": "https://verifyruns.pages.dev",
+  "bugs": {
+    "url": "https://github.com/farjad-hasan/verifyruns-n8n/issues"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
