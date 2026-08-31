@@ -50,6 +50,7 @@ Put the node **last** in the workflow, after the step that writes to your destin
 
 ## Version history
 
+- **0.1.1** — n8n verification-scan fixes: `usableAsTool`, themed light/dark icons, `NodeConnectionTypes.Main`, `pairedItem` on the output item.
 - **0.1.0** — initial release: report the run, claim the written count, wait for the verdict, fail the execution on FAIL.
 
 ## Develop

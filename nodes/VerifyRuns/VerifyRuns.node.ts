@@ -1,20 +1,21 @@
 import type { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
+import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 import { buildRequest, failureMessage, noItemsMessage, type VerdictResponse } from './request';
 
 export class VerifyRuns implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'VerifyRuns',
 		name: 'verifyRuns',
-		icon: 'file:verifyruns.svg',
+		icon: { light: 'file:verifyruns.svg', dark: 'file:verifyruns.dark.svg' },
 		group: ['output'],
 		version: 1,
+		usableAsTool: true,
 		subtitle: 'Verify the destination after this workflow ran',
 		description:
 			'Tells VerifyRuns this workflow finished and what it wrote. VerifyRuns re-reads the destination and returns PASS or FAIL; optionally fail this execution when the destination disagrees.',
 		defaults: { name: 'VerifyRuns' },
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
 				displayName: 'Webhook URL',
@@ -86,6 +87,6 @@ export class VerifyRuns implements INodeType {
 			throw new NodeOperationError(this.getNode(), message, { description: `Run ${res.run_id}` });
 		}
 
-		return [[{ json: { ...res, wrote } }]];
+		return [[{ json: { ...res, wrote }, pairedItem: items.map((_, item) => ({ item })) }]];
 	}
 }
