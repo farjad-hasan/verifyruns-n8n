@@ -22,7 +22,7 @@ The node runs once per execution and outputs one item: the VerifyRuns response (
 
 ## Install
 
-n8n → Settings → Community Nodes → Install → `n8n-nodes-verifyruns` (once published to npm). For a self-hosted n8n before that: clone, `npm install && npm pack`, then in n8n's user folder `cd ~/.n8n/nodes && npm install /path/to/n8n-nodes-verifyruns-0.1.0.tgz` and restart n8n (this is the path that was validated).
+n8n → Settings → Community Nodes → Install → `n8n-nodes-verifyruns` ([on npm](https://www.npmjs.com/package/n8n-nodes-verifyruns), published with provenance). Manual alternative: clone, `npm install && npm pack`, then in n8n's user folder `cd ~/.n8n/nodes && npm install /path/to/n8n-nodes-verifyruns-0.1.0.tgz` and restart n8n (this is the path that was validated).
 
 ## Status — read this
 
