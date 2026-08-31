@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - run: npm ci
+      # devDeps pull in native modules (isolated-vm via n8n-workflow) that our
+      # zero-runtime-dep package never executes; skip their build scripts.
+      - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm publish --provenance --access public
         env:
