@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           registry-url: https://registry.npmjs.org
       # devDeps pull in native modules (isolated-vm via n8n-workflow) that our
       # zero-runtime-dep package never executes; skip their build scripts.
