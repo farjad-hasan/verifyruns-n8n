@@ -1,8 +1,11 @@
-# Disabled on purpose: runs only when triggered by hand. n8n's verification queue wants
-# GitHub-Actions provenance from a public repo; enable `on: push: tags` when the repo goes public.
+# Publishes on version tags. Provenance requires the repo to be public; the first
+# publish authenticates with the NPM_TOKEN secret, after which the package can switch
+# to npm trusted publishing (then node-version must be >=22.14 and npm >=11.5.1).
 name: publish
 on:
   workflow_dispatch:
+  push:
+    tags: ["v*"]
 
 jobs:
   publish:
