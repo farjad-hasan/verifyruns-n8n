@@ -1,6 +1,7 @@
-# Publishes on version tags. Provenance requires the repo to be public; the first
-# publish authenticates with the NPM_TOKEN secret, after which the package can switch
-# to npm trusted publishing (then node-version must be >=22.14 and npm >=11.5.1).
+# Publishes on version tags via npm trusted publishing (GitHub OIDC — no token).
+# Configured on npm 2026-08-31: publisher farjad-hasan/verifyruns-n8n@publish.yml,
+# 2FA required, bypass tokens disallowed. Trusted publishing needs npm >=11.5.1,
+# hence the npm upgrade step (Node 22 bundles npm 10).
 name: publish
 on:
   workflow_dispatch:
@@ -19,10 +20,9 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@11
       # devDeps pull in native modules (isolated-vm via n8n-workflow) that our
       # zero-runtime-dep package never executes; skip their build scripts.
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
